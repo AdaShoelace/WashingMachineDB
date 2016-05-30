@@ -1,15 +1,11 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Created by Pierre on 2016-05-19.
  */
 public class InputManager {
 
-    private Connection connection;
-    private Statement stmt;
+    private Connection conn;
 
     public InputManager() {
         initiateConnection();
@@ -17,17 +13,29 @@ public class InputManager {
 
     private void initiateConnection() {
         try {
-            connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/DB?user=root&password=myPassword");
-            stmt = connection.createStatement();
+            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/test", "root" ,"");
         }catch(SQLException e) {
             e.printStackTrace();
         }
     }
 
+    public void asdfg() {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("select * from item");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                System.out.println(rs.getString(1)+" har medlemsnummer "+rs.getInt(2));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public void closeConnection() {
         try {
-            connection.close();
-            stmt.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="mariadb-java-client-1.4.5">
+    <CLASSES>
+      <root url="jar://C:/Program Files/MariaDBConnector/mariadb-java-client-1.4.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
