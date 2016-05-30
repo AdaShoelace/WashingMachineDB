@@ -15,7 +15,7 @@ public class GUI extends JFrame{
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         createAdminPane();
@@ -80,7 +80,6 @@ public class GUI extends JFrame{
         adminPanel.add(customerLabel);
         adminPanel.add(new AddCustomerButton());
     }
-
 
     public static void main(String[] args){
         new GUI();

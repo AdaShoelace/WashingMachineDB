@@ -27,5 +27,11 @@ public class AddItemButton extends JButton implements ActionListener{
         String energyclass = JOptionPane.showInputDialog("Enter the energy class (if applicable)");
         String description = JOptionPane.showInputDialog("Enter the price from the supplier");
 
+        String[] outputStringArray = {item, stock, model, manufacturer, outPrice, inPrice,
+                supplier, energyclass, description};
+
     }
+
+
+
 }

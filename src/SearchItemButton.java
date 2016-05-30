@@ -16,7 +16,8 @@ public class SearchItemButton extends JButton implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String Name = JOptionPane.showInputDialog("Enter the Name");
+        String ean = JOptionPane.showInputDialog("Enter the EAN of the item");
+        JOptionPane.showMessageDialog(null, InputManager.searchItem(ean));
 
     }
 }

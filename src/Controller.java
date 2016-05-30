@@ -6,12 +6,12 @@ public class Controller {
     private InputManager im;
 
     public Controller() {
-        im = new InputManager();
-        im.asdfg();
+       InputManager.initiateConnection();
     }
 
     public static void main(String[] args) {
         Controller c = new Controller();
+        GUI gui = new GUI();
 
     }
 }

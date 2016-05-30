@@ -17,5 +17,7 @@ public class DeleteItemButton extends JButton implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String item = JOptionPane.showInputDialog("Enter the EAN of the item to DELETE");
+
+        InputManager.deleteItem(item);
     }
 }
