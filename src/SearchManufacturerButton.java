@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class SearchManufacturerButton extends JButton implements ActionListener{
 
     public SearchManufacturerButton(){
-        super("Search for Manufacturer");
+        super("Manufacturer");
         setPreferredSize(new Dimension(250,100));
         addActionListener(this);
     }

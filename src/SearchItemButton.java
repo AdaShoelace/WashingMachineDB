@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class SearchItemButton extends JButton implements ActionListener{
 
     public SearchItemButton(){
-        super("Search Item");
+        super("Item");
         setPreferredSize(new Dimension(250,100));
         addActionListener(this);
     }
