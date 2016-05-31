@@ -16,9 +16,23 @@ public class AddCustomerButton extends JButton implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String Name = JOptionPane.showInputDialog("Enter the Name");
+        String name = JOptionPane.showInputDialog("Enter the Name");
         String customerID = JOptionPane.showInputDialog("Enter the customerID (10 digits)");
-        String PhoneNr = JOptionPane.showInputDialog("Enter the phone number");
-        String Email = JOptionPane.showInputDialog("Enter the Email-address");
+        String phoneNr = JOptionPane.showInputDialog("Enter the phone number");
+        String email = JOptionPane.showInputDialog("Enter the Email-address");
+
+        String[] attributeArray = {name, customerID, phoneNr, email};
+
+        InputManager.addCustomer(attributeArray);
+
+        String res = "";
+        if (InputManager.addCustomer(attributeArray)) {
+            res = "The customer was successfully added";
+        } else {
+            res = " The purchase was NOT successfully added";
+        }
+
+        JOptionPane.showMessageDialog(null, res);
+
     }
 }

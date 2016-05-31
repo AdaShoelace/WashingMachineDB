@@ -32,7 +32,7 @@ public class AddPurchaseButton extends JButton implements ActionListener {
         if (InputManager.addPurchase(item, customerID, amount, date)) {
             res = "The purchase was successfully added";
         } else {
-            res = " The purchase was NOT auccessfully added";
+            res = " The purchase was NOT successfully added";
         }
 
         JOptionPane.showMessageDialog(null, res);

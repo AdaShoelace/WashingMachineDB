@@ -145,7 +145,7 @@ public final class InputManager {
      * Adds customer to database
      * @param inputValue    String array containing values of customer attributes
      */
-    public static void addCustomer(String[] inputValue) {
+    public static boolean addCustomer(String[] inputValue) {
 
         String query = "insert into customer values(" + inputValue[0] +
                 "," + inputValue[1] + "," + inputValue[2] + "," + inputValue[3] + ")";
@@ -154,8 +154,9 @@ public final class InputManager {
             PreparedStatement stmt = conn.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
         } catch (SQLException e) {
-            e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     /** Add a pruchase to the Database
