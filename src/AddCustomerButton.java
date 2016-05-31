@@ -18,7 +18,6 @@ public class AddCustomerButton extends JButton implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String name = JOptionPane.showInputDialog("Enter the Name");
         String customerID = JOptionPane.showInputDialog("Enter the customerID (10 digits)");
-<<<<<<< HEAD
         String phoneNr = JOptionPane.showInputDialog("Enter the phone number");
         String email = JOptionPane.showInputDialog("Enter the Email-address");
 
@@ -35,11 +34,7 @@ public class AddCustomerButton extends JButton implements ActionListener{
 
         JOptionPane.showMessageDialog(null, res);
 
-=======
         String PhoneNr = JOptionPane.showInputDialog("Enter the phone number");
         String Email = JOptionPane.showInputDialog("Enter the Email-address");
-
-        
->>>>>>> origin/master
     }
 }
