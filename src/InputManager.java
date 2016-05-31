@@ -23,7 +23,8 @@ public final class InputManager {
 
     /**
      * Deletes item from the Item table in the database
-     * @param inputValue    The EAN of the item to be deleted
+     *
+     * @param inputValue The EAN of the item to be deleted
      */
     public static void deleteItem(String inputValue) {
 
@@ -39,7 +40,8 @@ public final class InputManager {
 
     /**
      * Takes EAN of an item and return the buyers of said item
-     * @param inputValue    EAN of item
+     *
+     * @param inputValue EAN of item
      * @return A string contaningen the information of the buyers
      */
     public static String findBuyer(String inputValue) {
@@ -71,8 +73,9 @@ public final class InputManager {
 
     /**
      * Takes item EAN as argument and return the information of that item
-     * @param inputValue    the EAN of an item
-     * @return  A string containing information about the specified item
+     *
+     * @param inputValue the EAN of an item
+     * @return A string containing information about the specified item
      */
     public static String searchItem(String inputValue) {
 
@@ -98,8 +101,9 @@ public final class InputManager {
 
     /**
      * Returns item based on manufacturer
-     * @param manufacturer  Name of manufacturer
-     * @return  Items of specified manufacturer
+     *
+     * @param manufacturer Name of manufacturer
+     * @return Items of specified manufacturer
      */
     public String searchManufacturer(String manufacturer) {
         String query = "SELECT * FROM ITEM WHERE Manufacturer=" + manufacturer;
@@ -124,14 +128,17 @@ public final class InputManager {
 
     /**
      * Adds item to database
-     * @param inputValue    String array containing the values of item attributes
+     *
+     * @param inputValue String array containing the values of item attributes
      */
-    public static void addItem(String[] inputValue) {
+    public static void addItem(String ean, String stock, String model, String manufacutrer, String sellPrice, String buyPrice, String supplier, String energy, String descrition, String category)
 
-        String query = "insert into item values(" + inputValue[0] +
-                "," + inputValue[1] + "," + inputValue[2] + "," + inputValue[3] +
-                "," + inputValue[4] + "," + inputValue[5] + "," + inputValue[6] +
-                "," + inputValue[7] + "," + inputValue[8] + "," + inputValue[9] + ")";
+    {
+
+        String query = "insert into item values(" + ean +
+                "," + stock + ",'" + model + "','" + manufacutrer +
+                "'," + sellPrice + "," + buyPrice + "," + supplier +
+                ",'" + energy + "','" + descrition + "','" + category + "')";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -143,7 +150,8 @@ public final class InputManager {
 
     /**
      * Adds customer to database
-     * @param inputValue    String array containing values of customer attributes
+     *
+     * @param inputValue String array containing values of customer attributes
      */
     public static boolean addCustomer(String[] inputValue) {
 
@@ -159,17 +167,19 @@ public final class InputManager {
         return true;
     }
 
-    /** Add a pruchase to the Database
-    * @param ean of the item bought
-    * @param customerID of the customer that bought the item
-    * @param amount number of items bought
-    * @param date date of purchase
-    * @return Returns true if the purchase was successfully added else false.
-            */
+    /**
+     * Add a pruchase to the Database
+     *
+     * @param ean        of the item bought
+     * @param customerID of the customer that bought the item
+     * @param amount     number of items bought
+     * @param date       date of purchase
+     * @return Returns true if the purchase was successfully added else false.
+     */
     public static boolean addPurchase(String ean, String customerID, String amount, String date) {
 
         String query = "insert into Purchases (EAN,CustomerID,Amount,PurchaseDate) values(" +
-                ean + "," + customerID + "," + amount + "," + date;
+                ean + "," + customerID + "," + amount + ",'" + date + "')";
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.executeQuery();
