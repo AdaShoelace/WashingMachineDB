@@ -9,11 +9,11 @@ import java.util.Calendar;
 /**
  * Created by Kristoffer on 30/05/16.
  */
-public class AddPurchaseButton extends JButton implements ActionListener{
+public class AddPurchaseButton extends JButton implements ActionListener {
 
-    public AddPurchaseButton(){
+    public AddPurchaseButton() {
         super("Add Purchase to Database");
-        setPreferredSize(new Dimension(250,100));
+        setPreferredSize(new Dimension(250, 100));
         addActionListener(this);
     }
 
@@ -26,6 +26,15 @@ public class AddPurchaseButton extends JButton implements ActionListener{
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
-        System.out.println(dateFormat.format(cal.getTime()));
+        String date = (dateFormat.format(cal.getTime()));
+
+        String res = "";
+        if (InputManager.addPurchase(item, customerID, amount, date)) {
+            res = "The purchase was successfully added";
+        } else {
+            res = " The purchase was NOT auccessfully added";
+        }
+
+        JOptionPane.showMessageDialog(null, res);
     }
 }

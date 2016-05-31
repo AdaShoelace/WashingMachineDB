@@ -158,6 +158,27 @@ public final class InputManager {
         }
     }
 
+    /** Add a pruchase to the Database
+    * @param ean of the item bought
+    * @param customerID of the customer that bought the item
+    * @param amount number of items bought
+    * @param date date of purchase
+    * @return Returns true if the purchase was successfully added else false.
+            */
+    public static boolean addPurchase(String ean, String customerID, String amount, String date) {
+
+        String query = "insert into Purchases (EAN,CustomerID,Amount,PurchaseDate) values(" +
+                ean + "," + customerID + "," + amount + "," + date;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Closes connection to database
      */

@@ -19,3 +19,5 @@ hs_err_pid*
 .idea/libraries/mariadb_java_client_1_4_5.xml
 
 .idea/workspace.xml
+
+*.xml
