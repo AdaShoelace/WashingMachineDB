@@ -30,12 +30,6 @@ public final class InputManager {
         }
     }
 
-    public void addCustomer() {
-
-    }
-
-
-
     public static String searchItem(String inputValue) {
 
         String query = "SELECT * FROM ITEM WHERE EAN=" + inputValue;
