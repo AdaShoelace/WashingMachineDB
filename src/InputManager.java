@@ -105,8 +105,8 @@ public final class InputManager {
      * @param manufacturer Name of manufacturer
      * @return Items of specified manufacturer
      */
-    public String searchManufacturer(String manufacturer) {
-        String query = "SELECT * FROM ITEM WHERE Manufacturer=" + manufacturer;
+    public static String searchManufacturer(String manufacturer) {
+        String query = "SELECT * FROM ITEM WHERE Manufacturer=" + "'" + manufacturer + "'";
         String res = "";
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -120,23 +120,36 @@ public final class InputManager {
                         + "Energyclass: " + rs.getString(8) + "\n"
                         + "Description: " + rs.getString(9);
             }
+            if (res == "")
+                return manufacturer + " not found";
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
         return res;
     }
 
+
     /**
      * Adds item to database
      *
-     * @param inputValue String array containing the values of item attributes
+     * @param ean
+     * @param stock
+     * @param model
+     * @param manufacturer
+     * @param sellPrice
+     * @param buyPrice
+     * @param supplier
+     * @param energy
+     * @param descrition
+     * @param category
      */
-    public static void addItem(String ean, String stock, String model, String manufacutrer, String sellPrice, String buyPrice, String supplier, String energy, String descrition, String category)
+    public static void addItem(String ean, String stock, String model, String manufacturer, String sellPrice, String buyPrice, String supplier, String energy, String descrition, String category)
 
     {
 
         String query = "insert into item values(" + ean +
-                "," + stock + ",'" + model + "','" + manufacutrer +
+                "," + stock + ",'" + model + "','" + manufacturer +
                 "'," + sellPrice + "," + buyPrice + "," + supplier +
                 ",'" + energy + "','" + descrition + "','" + category + "')";
 

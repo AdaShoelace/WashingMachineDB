@@ -17,5 +17,6 @@ public class SearchManufacturerButton extends JButton implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String manufacturer = JOptionPane.showInputDialog("Enter the Manufacturer");
+        JOptionPane.showMessageDialog(null, InputManager.searchManufacturer(manufacturer));
     }
 }
