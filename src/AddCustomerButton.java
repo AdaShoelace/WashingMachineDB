@@ -33,8 +33,5 @@ public class AddCustomerButton extends JButton implements ActionListener{
         }
 
         JOptionPane.showMessageDialog(null, res);
-
-        String PhoneNr = JOptionPane.showInputDialog("Enter the phone number");
-        String Email = JOptionPane.showInputDialog("Enter the Email-address");
     }
 }
