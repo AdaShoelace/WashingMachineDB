@@ -10,6 +10,9 @@ public final class InputManager {
     private InputManager() {
     }
 
+    /**
+     * Establish an connection to the database
+     */
     public static void initiateConnection() {
         try {
             conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/test", "root", "");
@@ -18,6 +21,10 @@ public final class InputManager {
         }
     }
 
+    /**
+     * Deletes item from the Item table in the database
+     * @param inputValue    The EAN of the item to be deleted
+     */
     public static void deleteItem(String inputValue) {
 
         String query = "DELETE FROM ITEM WHERE EAN=" + inputValue;
@@ -30,6 +37,11 @@ public final class InputManager {
         }
     }
 
+    /**
+     * Takes EAN of an item and return the buyers of said item
+     * @param inputValue    EAN of item
+     * @return A string contaningen the information of the buyers
+     */
     public static String findBuyer(String inputValue) {
 
         String query = "SELECT * FROM PURCHASES WHERE EAN=" + inputValue;
@@ -57,6 +69,11 @@ public final class InputManager {
         return res;
     }
 
+    /**
+     * Takes item EAN as argument and return the information of that item
+     * @param inputValue    the EAN of an item
+     * @return  A string containing information about the specified item
+     */
     public static String searchItem(String inputValue) {
 
         String query = "SELECT * FROM ITEM WHERE EAN=" + inputValue;
@@ -79,6 +96,11 @@ public final class InputManager {
         return res;
     }
 
+    /**
+     * Returns item based on manufacturer
+     * @param manufacturer  Name of manufacturer
+     * @return  Items of specified manufacturer
+     */
     public String searchManufacturer(String manufacturer) {
         String query = "SELECT * FROM ITEM WHERE Manufacturer=" + manufacturer;
         String res = "";
@@ -100,6 +122,10 @@ public final class InputManager {
         return res;
     }
 
+    /**
+     * Adds item to database
+     * @param inputValue    String array containing the values of item attributes
+     */
     public static void addItem(String[] inputValue) {
 
         String query = "insert into item values(" + inputValue[0] +
@@ -115,6 +141,10 @@ public final class InputManager {
         }
     }
 
+    /**
+     * Adds customer to database
+     * @param inputValue    String array containing values of customer attributes
+     */
     public static void addCustomer(String[] inputValue) {
 
         String query = "insert into customer values(" + inputValue[0] +
@@ -128,6 +158,9 @@ public final class InputManager {
         }
     }
 
+    /**
+     * Closes connection to database
+     */
     public static void closeConnection() {
         try {
             conn.close();
