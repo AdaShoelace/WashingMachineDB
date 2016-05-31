@@ -20,5 +20,7 @@ public class AddCustomerButton extends JButton implements ActionListener{
         String customerID = JOptionPane.showInputDialog("Enter the customerID (10 digits)");
         String PhoneNr = JOptionPane.showInputDialog("Enter the phone number");
         String Email = JOptionPane.showInputDialog("Enter the Email-address");
+
+        
     }
 }

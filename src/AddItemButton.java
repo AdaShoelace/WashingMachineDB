@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 /**
  * Created by Kristoffer on 30/05/16.
  */
-public class AddItemButton extends JButton implements ActionListener{
+public class AddItemButton extends JButton implements ActionListener {
 
-    public AddItemButton(){
+    public AddItemButton() {
         super("Add an Item to the Database");
-        setPreferredSize(new Dimension(250,100));
+        setPreferredSize(new Dimension(250, 100));
         addActionListener(this);
     }
 
@@ -23,16 +23,21 @@ public class AddItemButton extends JButton implements ActionListener{
         String manufacturer = JOptionPane.showInputDialog("Enter the manufacturer");
         String outPrice = JOptionPane.showInputDialog("Enter the selling price");
         String inPrice = JOptionPane.showInputDialog("Enter the price from the supplier");
-        String supplier = JOptionPane.showInputDialog("Enter the name of the supplier");
+        String supplier = JOptionPane.showInputDialog("Enter the OrgNbr of the supplier");
         String energyclass = JOptionPane.showInputDialog("Enter the energy class (if applicable)");
-        String description = JOptionPane.showInputDialog("Enter the price from the supplier");
+        String description = JOptionPane.showInputDialog("Enter the Item description");
         String category = JOptionPane.showInputDialog("Enter the item category");
+
+        if (energyclass.equals("")) {
+            energyclass = "N/A";
+        }
 
         String[] outputStringArray = {item, stock, model, manufacturer, outPrice, inPrice,
                 supplier, energyclass, description, category};
 
-    }
+        InputManager.addItem(item, stock, model, manufacturer, outPrice, inPrice, supplier, energyclass, description, category);
 
+    }
 
 
 }
