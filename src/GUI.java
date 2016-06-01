@@ -72,6 +72,7 @@ public class GUI extends JFrame {
         adminPanel.add(new AddPurchaseButton());
         adminPanel.add(customerLabel);
         adminPanel.add(new AddCustomerButton());
+        adminPanel.add(new FindBonusButton());
     }
 
     public static void main(String[] args) {
