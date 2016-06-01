@@ -44,6 +44,7 @@ public class GUI extends JFrame {
         userPanel.add(itemLabel);
         userPanel.add(new SearchItemButton());
         userPanel.add(new SearchManufacturerButton());
+        userPanel.add(new SearchCategoryButton());
     }
 
     private void createAdminPane() {

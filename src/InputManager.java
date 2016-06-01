@@ -26,7 +26,7 @@ public final class InputManager {
      *
      * @param inputValue The EAN of the item to be deleted
      */
-    public static void deleteItem(String inputValue) {
+    public static boolean deleteItem(String inputValue) {
 
         String query = "DELETE FROM ITEM WHERE EAN=" + inputValue;
 
@@ -35,7 +35,9 @@ public final class InputManager {
             ResultSet rs = stmt.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     /**
@@ -62,6 +64,7 @@ public final class InputManager {
                     String columnValue = rs.getString(i);
                     res += rsmd.getColumnName(i) + ": " + columnValue + "\n";
                 }
+                res += "\n";
             }
 
         } catch (SQLException e) {
@@ -130,15 +133,17 @@ public final class InputManager {
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
+
             while (rs.next()) {
-                res = "EAN: " + rs.getString(1) + "\n"
+                res += "EAN: " + rs.getString(1) + "\n"
                         + "Numbers in stock: " + rs.getString(2) + " \n"
                         + "Model: " + rs.getString(3) + "\n"
                         + "Manufacturer: " + rs.getString(4) + "\n"
                         + "Price: " + rs.getString(5) + ":-" + "\n"
                         + "Energyclass: " + rs.getString(8) + "\n"
-                        + "Description: " + rs.getString(9);
+                        + "Description: " + rs.getString(9) + "\n\n";
             }
+
             if (res == "")
                 return manufacturer + " not found";
         } catch (SQLException e) {
@@ -163,7 +168,7 @@ public final class InputManager {
      * @param descrition
      * @param category
      */
-    public static void addItem(String ean, String stock, String model, String manufacturer, String sellPrice, String buyPrice, String supplier, String energy, String descrition, String category)
+    public static boolean addItem(String ean, String stock, String model, String manufacturer, String sellPrice, String buyPrice, String supplier, String energy, String descrition, String category)
 
     {
 
@@ -177,7 +182,9 @@ public final class InputManager {
             ResultSet rs = stmt.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     /**
@@ -188,7 +195,7 @@ public final class InputManager {
     public static boolean addCustomer(String[] inputValue) {
 
         String query = "insert into customer values(" + inputValue[0] +
-                "," + inputValue[1] + "," + inputValue[2] + "," + inputValue[3] + ")";
+                ",'" + inputValue[1] + "','" + inputValue[2] + "'," + inputValue[3] + ",'" + inputValue[4] + "')";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -233,4 +240,30 @@ public final class InputManager {
         }
     }
 
+    public static String searchCategory(String category) {
+
+        String query = "SELECT * FROM ITEM WHERE Category=" + "'" + category + "'";
+        String res = "";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                res += "EAN: " + rs.getString(1) + "\n"
+                        + "Numbers in stock: " + rs.getString(2) + " \n"
+                        + "Model: " + rs.getString(3) + "\n"
+                        + "Manufacturer: " + rs.getString(4) + "\n"
+                        + "Price: " + rs.getString(5) + ":-" + "\n"
+                        + "Energyclass: " + rs.getString(8) + "\n"
+                        + "Description: " + rs.getString(9) + "\n\n";
+            }
+
+            if (res == "")
+                return "No items in " + category;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return res;
+    }
 }

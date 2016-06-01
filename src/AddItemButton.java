@@ -35,7 +35,11 @@ public class AddItemButton extends JButton implements ActionListener {
         String[] outputStringArray = {item, stock, model, manufacturer, outPrice, inPrice,
                 supplier, energyclass, description, category};
 
-        InputManager.addItem(item, stock, model, manufacturer, outPrice, inPrice, supplier, energyclass, description, category);
+        if(InputManager.addItem(item, stock, model, manufacturer, outPrice, inPrice, supplier, energyclass, description, category)){
+            JOptionPane.showMessageDialog(null, "Item was successfully added to the database");
+        } else {
+            JOptionPane.showMessageDialog(null, "Item was NOT added to the database");
+        }
 
     }
 

@@ -25,6 +25,7 @@ public class AddCustomerButton extends JButton implements ActionListener {
         String[] attributeArray = {customerID, name, address, phoneNr, email};
 
         String res = "";
+
         if (InputManager.addCustomer(attributeArray)) {
             res = "The customer was successfully added";
         } else {
