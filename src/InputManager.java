@@ -99,6 +99,28 @@ public final class InputManager {
         return res;
     }
 
+    public static String findByBonus(String totalAmount) {
+
+        String query = "SELECT name,address " +
+                    "FROM (purchases as p join customer as c on p.customerID = c.customerID" +
+                    "join item as i on p.ean = i.ean)" +
+                    "group by p.customerID" +
+                    "having sum(i.outprice * p.amount) >" + totalAmount;
+        try{
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                res = "Name: " + rs.getString(1) +
+                         "\tEmail: " + rs.getString(2) + "\n";
+
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     /**
      * Returns item based on manufacturer
      *
